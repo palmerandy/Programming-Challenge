@@ -52,6 +52,11 @@ Unit tests and API integration tests have been supplied.
 
 To keep the solution clean and simple I have implemented a basic API Key solution. **That is all Product requests require a header named "Authorization" with a value of "ApiKey sample-key".**  
 
+I choose an API key solution as I wanted to keep this solution as simple as possible:
+- Simple for the reviewers to consume.
+- Simple to avoid implementing a complicated login process that migth require a persistant data store, a UI front end, etc.
+- For simplicity there is only one API key setup. If you have access to the key you have access to all of the Products API.  This could be extended in the future to distigiush between requests.
+
 In a production scenario I would strongly recommend going down a different path, such as
 - [Easy Auth](https://docs.microsoft.com/en-us/azure/app-service/overview-authentication-authorization) handled by the Azure App service 
 - [Identity server](https://identityserver.io/)
