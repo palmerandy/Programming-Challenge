@@ -32,11 +32,11 @@ dotnet run --project Products\Products
 
 </details>
 
-The API is available at <a href="https://localhost:44356" target="_">https://localhost:44356</a>.  If you see an invalid security certificate error, please click advanced add an exception and continue.  
-
-Swagger is available at <a href="https://localhost:44356/products" target="_">https://localhost:44356/products</a>.
+The API is available at <a href="https://localhost:44356/products" target="_">https://localhost:44356/products</a>.  If you see an invalid security certificate error, please click advanced add an exception and continue.  
 
 **The API requires a header named "Authorization" with a value of "ApiKey sample-key"**
+
+Swagger is available at <a href="https://localhost:44356" target="_">https://localhost:44356</a>.  When using Swagger Click the Authorize button (top right of screen), enter the value of **ApiKey sample-key** (this can be copied from the screen) and click Authorize.
 
 ## Tests
 
