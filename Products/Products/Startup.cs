@@ -27,19 +27,16 @@ namespace Products
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options =>
-            {
-                options.Filters.Add(typeof(ApiKeyActionFilter));
-                options.Filters.Add(typeof(ModelStateActionFilter));
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            AddMvc(services);
+            AddServices(services);
+            AddSwagger(services);
+        }
 
-            services.AddSingleton<IProductRepository, ProductRepository>();
-            services.AddTransient<IProductService, ProductService>();
-            services.AddTransient<IProductFactory, ProductFactory>();
-
+        private static void AddSwagger(IServiceCollection services)
+        {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+                c.SwaggerDoc("v1", new Info {Title = "My API", Version = "v1"});
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
@@ -47,17 +44,32 @@ namespace Products
                 c.AddSecurityDefinition(ApiKeyActionFilter.AuthorizationHeaderName, new ApiKeyScheme
                 {
                     In = "header",
-                    Description = $"Please enter API Key. Sample key: { ApiKeyActionFilter.AuthorizationApiKeyValue}",
+                    Description = $"Please enter API Key. Sample key: {ApiKeyActionFilter.AuthorizationApiKeyValue}",
                     Name = ApiKeyActionFilter.AuthorizationHeaderName,
                     Type = "apiKey",
                     Extensions = { }
-
                 });
                 c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
                 {
                     {ApiKeyActionFilter.AuthorizationHeaderName, Enumerable.Empty<string>()},
                 });
             });
+        }
+
+        private static void AddServices(IServiceCollection services)
+        {
+            services.AddSingleton<IProductRepository, ProductRepository>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IProductFactory, ProductFactory>();
+        }
+
+        private static void AddMvc(IServiceCollection services)
+        {
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(ApiKeyActionFilter));
+                options.Filters.Add(typeof(ModelStateActionFilter));
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
 

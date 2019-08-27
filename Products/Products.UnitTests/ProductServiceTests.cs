@@ -24,7 +24,7 @@ namespace Products.UnitTests
         [Test]
         public void UpdateExistingProduct_IsValid()
         {
-            var productId = "existingId";
+            const string productId = "existingId";
             _productRepository.Setup(p => p.Get(productId)).Returns(new Product());
             _productService.ValidateIsUpdatingExistingProduct(productId, _modelStateWrapper);
             Assert.IsTrue(_modelStateWrapper.IsValid);

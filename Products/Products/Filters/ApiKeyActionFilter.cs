@@ -6,7 +6,7 @@ namespace Products.Filters
     public class ApiKeyActionFilter : IActionFilter
     {
         public static readonly string AuthorizationHeaderName = "Authorization";
-        public static readonly string AuthorizationApiKeyValue = "ApiKey sample-key"; //key should live in Azure Key Vault or similar.
+        public static readonly string AuthorizationApiKeyValue = "ApiKey sample-key"; // key should live in Azure Key Vault or similar (i.e. not in the source code checked into git) and be supplied as an app setting
 
         public void OnActionExecuting(ActionExecutingContext filterContext)
         {

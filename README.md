@@ -4,9 +4,10 @@ A Web API for the management of products.
 
 ## Decisions Made
 
-- the back end is responsible for the creation of Product Ids
-- POST request method creates a new product and PUT request method updates existing products (will return a bad request if product does not exist)
-- all Product endpoints to require an API Key - more on this under Authentication and Authorisation section below
+- The back end is responsible for the creation of Product Ids.
+- POST request method creates a new product and PUT request method updates existing products (will return a bad request if product does not exist).
+- All Product endpoints to require an API Key - more on this under Authentication and Authorisation section below.
+- Filtering implemented using query string parameters that can be combined (i.e. you can filter for a brand and a model and a description all at once).
 
 ## Usage
 
@@ -51,7 +52,7 @@ Unit tests and API integration tests have been supplied.
 
 To keep the solution clean and simple I have implemented a basic API Key solution. **That is all Product requests require a header named "Authorization" with a value of "ApiKey sample-key".**  
 
-In a production scenario I would strongly suggest going down a different path, such as
+In a production scenario I would strongly recommend going down a different path, such as
 - [Easy Auth](https://docs.microsoft.com/en-us/azure/app-service/overview-authentication-authorization) handled by the Azure App service 
 - [Identity server](https://identityserver.io/)
 - etc depending on requirements
