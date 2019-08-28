@@ -17,7 +17,7 @@ Clone repository, then either:
   <summary>Run from Visual Studio 2019 </summary>
 
 * open solution
-* select the Products project and start without debuging (Ctrl + F5)
+* select the Products project and start without debugging (Ctrl + F5)
 
 </details>
 
@@ -44,7 +44,7 @@ Swagger is available at <a href="https://localhost:44356" target="_">https://loc
 Unit tests and API integration tests have been supplied. 
 
 ### Running API Tests
-* Within Visual Studio I find it easiet to start the Products Project without debugging
+* Within Visual Studio I find it easiest to start the Products Project without debugging
 * Then Open Test Explorer (Tests > Windows > Test Explorer)
 * Click the run all button or use the shortcut Ctrl + R, A
 
@@ -54,8 +54,10 @@ To keep the solution clean and simple I have implemented a basic API Key solutio
 
 I choose an API key solution as I wanted to keep this solution as simple as possible:
 - Simple for the reviewers to consume.
-- Simple to avoid implementing a complicated login process that migth require a persistant data store, a UI front end, etc.
-- For simplicity there is only one API key setup. If you have access to the key you have access to all of the Products API.  This could be extended in the future to distigiush between requests.
+- Simple to avoid implementing a complicated login process that might require a persistent data store, a UI front end, etc. 
+- For simplicity there is only one API key setup. If you have access to the key you have access to all of the Products API.  This could be extended in the future to distinguish between requests.
+
+I entertained implementing JwtBearerDefaults.AuthenticationScheme but decided against it as it was not specified whether this was a B2B API or an consumer facing API.  If this were a consumer facing API I would have implemented JWT authentication.
 
 In a production scenario I would strongly recommend going down a different path, such as
 - [Easy Auth](https://docs.microsoft.com/en-us/azure/app-service/overview-authentication-authorization) handled by the Azure App service 
